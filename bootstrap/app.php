@@ -23,9 +23,11 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+$app->withFacades();
 
 // $app->withEloquent();
+
+class_alias('Laravel\Socialite\Facades\Socialite', 'Socialite');
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +62,7 @@ $app->singleton(
 */
 
 $app->configure('app');
-
+$app->configure('services');
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -93,7 +95,8 @@ $app->configure('app');
 
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+$app->register(App\Providers\EventServiceProvider::class);
+$app->register(SocialiteProviders\Manager\ServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

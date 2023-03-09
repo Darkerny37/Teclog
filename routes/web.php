@@ -13,6 +13,16 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->get('/test', function () {
+    return Socialite::driver('azure')->redirect();
 });
+
+$router->get('/redirect', function () {
+    $user = Socialite::driver('azure')->user();
+    print_r("waos");
+    print_r($user);
+    print_r("waos \n");
+    print_r(($user->accessTokenResponseBody)["access_token"]);
+    
+});
+
